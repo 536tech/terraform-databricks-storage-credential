@@ -16,7 +16,7 @@ The resource addresses above are part of the DataTF import contract. Do not rena
 ```hcl
 module "storage_credential" {
   source  = "536tech/storage-credential/databricks"
-  version = "0.1.0"
+  version = "1.0.0"
 
   name           = "lake_cred"
   isolation_mode = "ISOLATION_MODE_ISOLATED"
