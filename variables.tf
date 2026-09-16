@@ -12,10 +12,9 @@ variable "name" {
 variable "isolation_mode" {
   description = "Isolation mode: ISOLATION_MODE_OPEN or ISOLATION_MODE_ISOLATED."
   type        = string
-  nullable    = false
 
   validation {
-    condition     = contains(["ISOLATION_MODE_OPEN", "ISOLATION_MODE_ISOLATED"], var.isolation_mode)
+    condition     = var.isolation_mode == null ? true : contains(["ISOLATION_MODE_OPEN", "ISOLATION_MODE_ISOLATED"], var.isolation_mode)
     error_message = "isolation_mode must be ISOLATION_MODE_OPEN or ISOLATION_MODE_ISOLATED."
   }
 }
@@ -23,10 +22,9 @@ variable "isolation_mode" {
 variable "owner" {
   description = "Storage credential owner. A user, group, or service principal."
   type        = string
-  nullable    = false
 
   validation {
-    condition     = try(length(trimspace(var.owner)) > 0, false)
+    condition     = var.owner == null ? true : try(length(trimspace(var.owner)) > 0, false)
     error_message = "owner must not be empty or blank."
   }
 }
@@ -34,7 +32,6 @@ variable "owner" {
 variable "read_only" {
   description = "Limit the credential to read access."
   type        = bool
-  nullable    = false
 }
 
 variable "comment" {

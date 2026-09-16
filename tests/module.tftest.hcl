@@ -83,3 +83,12 @@ run "reject_isolation_mode" {
   }
   expect_failures = [var.isolation_mode]
 }
+
+run "accept_provider_defaults" {
+  command = plan
+  variables {
+    owner          = null
+    isolation_mode = null
+    read_only      = null
+  }
+}
